@@ -5,10 +5,10 @@ WHERE last_name = 'Wahlberg'
 GROUP BY last_name;
 
 --How many payments were made between $3.99 and $5.99?
-SELECT amount, COUNT(amount)
+SELECT COUNT(amount)
 FROM payment
-WHERE amount BETWEEN 3.99 AND 5.99
-GROUP BY amount;
+WHERE amount BETWEEN 3.99 AND 5.99;
+
 
 --What film does the store have the most of? (search in inventory)
 SELECT film_id, COUNT(film_id)
@@ -31,6 +31,7 @@ GROUP BY last_name;
 SELECT staff_id, COUNT(staff_id)
 FROM payment
 GROUP BY staff_id
+ORDER BY COUNT(staff_id) DESC
 LIMIT 1;
 
 --How many different district names are there?
@@ -53,10 +54,11 @@ ORDER BY COUNT(last_name) DESC
 Limit 1;
 
 --How many payment amounts (4.99, 5.99, etc.) had a number of rentals above 250 for customers  with ids between 380 and 430? (use group by and having > 250)
-SELECT customer_id,amount 
+SELECT amount, COUNT(amount)
 FROM payment
-WHERE customer_id BETWEEN 380 and 430;
-
+WHERE customer_id BETWEEN 380 and 430
+GROUP BY amount
+HAVING COUNT(amount)>250;
 
 --Within the film table, how many rating categories are there? 
 SELECT COUNT(DISTINCT rating)
